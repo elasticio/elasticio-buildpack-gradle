@@ -9,10 +9,10 @@ Elastic.io buildpack for Gradle components
 src/  
 build/  
 lib/  
-sailor-jvm/  
-   /src  
-   /build        
-   /lib  
+sailor-jvm/    
+...../src   
+...../build         
+...../lib    
 component.json  
 sail.sh  
   
