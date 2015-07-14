@@ -16,5 +16,6 @@ sailor-jvm/
 component.json  
 sail.sh  
   
-Sail.sh will have following command: 
+sail.sh will contain the following command:  
+
 java -cp ./build/classes/main:./lib/*:./sailor-jvm/build/classes/main/:./sailor-jvm/lib/* io.elastic.sailor.Sailor
