@@ -10,14 +10,15 @@ OPT_DIR=$BP_DIR/opt
 LIB_DIR=$BP_DIR/lib
 
 . $LIB_DIR/common.sh
-. $LIB_DIR/elasticio.sh
 
 # parse args
 BUILD_DIR=$1
 CACHE_DIR=$2
 ENV_DIR=$3
 
-GRADLE_TASK=${GRADLE_TASK-stage}
+echo -n "-----> Build folder ${BUILD_DIR}... "
+
+GRADLE_TASK="elastic"
 
 export_env_dir $ENV_DIR
 
@@ -66,7 +67,14 @@ if [ "${PIPESTATUS[*]}" != "0 0" ]; then
   exit 1
 fi
 
-mkdir component
-mv * component
+echo "-----> Checkout sailor-jvm into ./sailor-jvm"
+git clone https://github.com/elasticio/sailor-jvm.git
+cd sailor-jvm
+echo "      run ./gradlew elastic"
+./gradlew elastic
 
-install_sailor
+echo "-----> Create sail.sh file"
+cd ..
+echo "java -cp ./build/classes/main:./lib/*:./sailor-jvm/build/classes/main/:./sailor-jvm/lib/* io.elastic.sailor.Sailor" > sail.sh
+
+echo "-----> Success"
