@@ -76,6 +76,6 @@ echo "      run ./gradlew elastic"
 echo "-----> Create sail.sh file"
 cd ..
 echo "java -cp ./build/classes/main:./lib/*:./sailor-jvm/build/classes/main/:./sailor-jvm/lib/* io.elastic.sailor.Sailor" > sail.sh
-echo "java -cp ./build/classes/main:./lib/*:./sailor-jvm/build/classes/main/:./sailor-jvm/lib/* io.elastic.sailor.Service ${1} ${2} ${3}" > serve.sh
+echo "java -cp ./build/classes/main:./lib/*:./sailor-jvm/build/classes/main/:./sailor-jvm/lib/* io.elastic.sailor.Service \${1} \${2} \${3}" > serve.sh
 
 echo "-----> Success"
