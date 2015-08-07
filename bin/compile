@@ -2,16 +2,26 @@
 # bin/compile <build-dir> <cache-dir> <env-dir>
 
 # fail fast
+echo -n "set -e"
 set -e
 
+echo -n "BP_DIR=$(cd $(dirname $0)/..; pwd) # absolute path"
 BP_DIR=$(cd $(dirname $0)/..; pwd) # absolute path
+
+echo -n "BIN_DIR=$BP_DIR/bin"
+echo -n "OPT_DIR=$BP_DIR/opt"
+echo -n "LIB_DIR=$BP_DIR/lib"
 BIN_DIR=$BP_DIR/bin
 OPT_DIR=$BP_DIR/opt
 LIB_DIR=$BP_DIR/lib
 
+echo -n ". $LIB_DIR/common.sh"
 . $LIB_DIR/common.sh
 
 # parse args
+echo -n "BUILD_DIR=$1"
+echo  -n"CACHE_DIR=$2"
+echo -n "ENV_DIR=$3"
 BUILD_DIR=$1
 CACHE_DIR=$2
 ENV_DIR=$3
