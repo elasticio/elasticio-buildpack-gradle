@@ -67,15 +67,15 @@ if [ "${PIPESTATUS[*]}" != "0 0" ]; then
   exit 1
 fi
 
-echo "-----> Checkout sailor-jvm into ./sailor-jvm"
+echo "-----> Cloning sailor-jvm from GitHub"
 git clone https://github.com/elasticio/sailor-jvm.git
 cd sailor-jvm
-echo "      run ./gradlew elastic"
-./gradlew elastic
+echo "      Building sailor"
+./gradlew clean build fatJar
 
-echo "-----> Create sail.sh file"
+echo "-----> Create sail.sh and serve.sh files"
 cd ..
-echo "java -cp ./build/classes/main:./lib/*:./sailor-jvm/build/classes/main/:./sailor-jvm/lib/* io.elastic.sailor.Sailor" > sail.sh
-echo "java -cp ./build/classes/main:./lib/*:./sailor-jvm/build/classes/main/:./sailor-jvm/lib/* io.elastic.sailor.Service \${1} \${2} \${3}" > serve.sh
+echo "java -cp ./build/classes/main:./lib/*:../sailor-jvm/build/libs/* io.elastic.sailor.Sailor" > sail.sh
+echo "java -cp ./build/classes/main:./lib/*:../sailor-jvm/build/libs/* io.elastic.sailor.Service \${1} \${2} \${3}" > serve.sh
 
 echo "-----> Success"
