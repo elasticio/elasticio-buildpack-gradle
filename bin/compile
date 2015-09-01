@@ -18,7 +18,7 @@ ENV_DIR=$3
 
 echo -n "-----> Build folder ${BUILD_DIR}... "
 
-GRADLE_TASK="elastic"
+GRADLE_TASK="clean build prepareSailorWithDependencies -b sailor_jvm_build.gradle"
 
 export_env_dir $ENV_DIR
 
@@ -36,6 +36,9 @@ if [ ! -f $BUILD_DIR/gradlew ] ; then
   echo "       in the future may not be supported."
   cp -rn ${OPT_DIR}/wrapper/* ${BUILD_DIR}
 fi
+
+cp ${OPT_DIR}/sailor_jvm_build.gradle ${BUILD_DIR}
+
 BUILDCMD="./gradlew"
 chmod +x ${BUILD_DIR}/gradlew
 
@@ -51,19 +54,13 @@ echo "-----> executing $BUILDCMD"
 $BUILDCMD 2>&1 | sed -u 's/^/       /'
 
 if [ "${PIPESTATUS[*]}" != "0 0" ]; then
-  echo " !     Failed to build app"
+  echo " !     Failed to build connector"
   exit 1
 fi
 
-echo "-----> Cloning sailor-jvm from GitHub"
-git clone https://github.com/elasticio/sailor-jvm.git
-cd sailor-jvm
-echo "      Building sailor"
-./gradlew clean build fatJar
-
 echo "-----> Create sail.sh and serve.sh files"
 cd ..
-echo "java -cp ./build/classes/main:./lib/*:../sailor-jvm/build/libs/* io.elastic.sailor.Sailor" > sail.sh
-echo "java -cp ./build/classes/main:./lib/*:../sailor-jvm/build/libs/* io.elastic.sailor.Service \${1} \${2} \${3}" > serve.sh
+echo "java -cp ./build/classes/main:./build/elasticio/dependencies/* io.elastic.sailor.Sailor" > sail.sh
+echo "java -cp ./build/classes/main:./build/elasticio/dependencies/* io.elastic.sailor.Service \${1} \${2} \${3}" > serve.sh
 
-echo "-----> Success"
+echo "-----> Connector built successfully"
