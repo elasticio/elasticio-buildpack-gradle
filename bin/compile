@@ -59,7 +59,7 @@ if [ "${PIPESTATUS[*]}" != "0 0" ]; then
 fi
 
 echo "-----> Create sail.sh and serve.sh files"
-cd ..
+
 echo "java -cp ./build/classes/main:./build/elasticio/dependencies/* io.elastic.sailor.Sailor" > sail.sh
 echo "java -cp ./build/classes/main:./build/elasticio/dependencies/* io.elastic.sailor.Service \${1} \${2} \${3}" > serve.sh
 
