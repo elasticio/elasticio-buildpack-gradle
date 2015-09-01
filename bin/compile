@@ -61,6 +61,6 @@ fi
 echo "-----> Create sail.sh and serve.sh files"
 
 echo "java -cp ./build/classes/main:./build/resources/main:./build/elasticio/dependencies/* io.elastic.sailor.Sailor" > sail.sh
-echo "java -cp ./build/classes/main:./build/resources/main:./build/elasticio/dependencies/* \${1} \${2} \${3}" > serve.sh
+echo "java -cp ./build/classes/main:./build/resources/main:./build/elasticio/dependencies/* io.elastic.sailor.Service \${1} \${2} \${3}" > serve.sh
 
 echo "-----> Connector built successfully"
