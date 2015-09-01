@@ -51,16 +51,17 @@ echo "-----> Building Gradle app..."
 echo "       WARNING: The Gradle buildpack is currently in Beta."
 echo "-----> executing $BUILDCMD"
 
-$BUILDCMD 2>&1 | sed -u 's/^/       /'
+$BUILDCMD 2>&1
+#$BUILDCMD 2>&1 | sed -u 's/^/       /'
 
 if [ "${PIPESTATUS[*]}" != "0 0" ]; then
   echo " !     Failed to build connector"
-  exit 1
+  #exit 1
 fi
 
 echo "-----> Create sail.sh and serve.sh files"
 
-echo "java -cp ./build/classes/main:./build/elasticio/dependencies/* io.elastic.sailor.Sailor" > sail.sh
-echo "java -cp ./build/classes/main:./build/elasticio/dependencies/* io.elastic.sailor.Service \${1} \${2} \${3}" > serve.sh
+echo "java -cp ./build/classes/main:./build/resources/main:./build/elasticio/dependencies/* io.elastic.sailor.Sailor" > sail.sh
+echo "java -cp ./build/classes/main:./build/resources/main:./build/elasticio/dependencies/* \${1} \${2} \${3}" > serve.sh
 
 echo "-----> Connector built successfully"
