@@ -59,7 +59,7 @@ if [ "${PIPESTATUS[*]}" != "0 0" ]; then
 fi
 
 echo "-----> Make ${BUILD_DIR}/component.json to be available on the classpath"
-cp ./component.json ./build/elasticio/dependencies
+cp ./component.json ./build/classes/main
 
 echo "-----> Create sail.sh and serve.sh files"
 
