@@ -16,7 +16,7 @@ BUILD_DIR=$1
 CACHE_DIR=$2
 ENV_DIR=$3
 
-echo -n "-----> Build folder ${BUILD_DIR}... "
+echo "-----> Build folder ${BUILD_DIR}... "
 
 GRADLE_TASK="clean build prepareSailorWithDependencies -b sailor_jvm_build.gradle"
 
@@ -57,6 +57,9 @@ if [ "${PIPESTATUS[*]}" != "0 0" ]; then
   echo " !     Failed to build connector"
   exit 1
 fi
+
+echo "-----> Make ${BUILD_DIR}/component.json to be available on the classpath"
+cp ${BUILD_DIR}component.json ./build/elasticio/dependencies
 
 echo "-----> Create sail.sh and serve.sh files"
 
