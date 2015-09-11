@@ -19,3 +19,9 @@ sail.sh
 sail.sh will contain the following command:  
 
 java -cp ./build/classes/main:./lib/*:./sailor-jvm/build/classes/main/:./sailor-jvm/lib/* io.elastic.sailor.Sailor
+
+## Testing locally
+
+``bash
+bin/compile /tmp/buildpack_tmp/build/ /tmp/buildpack_tmp/cache/ /tmp/buildpack_tmp/env/
+``
