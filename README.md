@@ -22,6 +22,6 @@ java -cp ./build/classes/main:./lib/*:./sailor-jvm/build/classes/main/:./sailor-
 
 ## Testing locally
 
-``bash
+``sh
 bin/compile /tmp/buildpack_tmp/build/ /tmp/buildpack_tmp/cache/ /tmp/buildpack_tmp/env/
 ``
