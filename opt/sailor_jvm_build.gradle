@@ -7,10 +7,6 @@ repositories {
     mavenCentral()
 }
 
-dependencies {
-    compile "io.elastic:sailor-jvm:0.0.1-SNAPSHOT"
-}
-
 task prepareSailorWithDependencies(type: Copy, dependsOn: build) {
     into "build/elasticio/dependencies/"
     from configurations.compile
