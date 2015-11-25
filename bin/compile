@@ -72,7 +72,7 @@ cp ./component.json $CLASSES_MAIN_DIR
 
 echo "-----> Create sail.sh and serve.sh files"
 
-echo "java -cp $CLASSES_MAIN_DIR:$RESOURCES_MAIN_DIR:$DEPENDENCIES_DIR/* io.elastic.sailor.Sailor" > sail.sh
-echo "java -cp $CLASSES_MAIN_DIR:$RESOURCES_MAIN_DIR:$DEPENDENCIES_DIR/* io.elastic.sailor.Service \${1} \${2} \${3}" > serve.sh
+echo "java -Dfile.encoding=UTF-8 -cp $CLASSES_MAIN_DIR:$RESOURCES_MAIN_DIR:$DEPENDENCIES_DIR/* io.elastic.sailor.Sailor" > sail.sh
+echo "java -Dfile.encoding=UTF-8 -cp $CLASSES_MAIN_DIR:$RESOURCES_MAIN_DIR:$DEPENDENCIES_DIR/* io.elastic.sailor.Service \${1} \${2} \${3}" > serve.sh
 
 echo "-----> Connector built successfully"
