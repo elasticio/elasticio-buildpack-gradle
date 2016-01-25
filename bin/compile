@@ -72,6 +72,9 @@ cp ./component.json $CLASSES_MAIN_DIR
 
 echo "-----> Create sail.sh and serve.sh files"
 
+CLASSPATH=$CLASSES_MAIN_DIR:$RESOURCES_MAIN_DIR:$DEPENDENCIES_DIR/*
+
+ruby -e "require 'yaml';obj = {'config_vars' => {'CLASSPATH' => '$CLASSPATH'}};File.open('.release', 'w') {|f| f.write(obj.to_yaml) }"
 echo "java -cp $CLASSES_MAIN_DIR:$RESOURCES_MAIN_DIR:$DEPENDENCIES_DIR/* io.elastic.sailor.Sailor" > sail.sh
 echo "java -cp $CLASSES_MAIN_DIR:$RESOURCES_MAIN_DIR:$DEPENDENCIES_DIR/* io.elastic.sailor.Service \${1} \${2} \${3}" > serve.sh
 
