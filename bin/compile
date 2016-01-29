@@ -76,7 +76,7 @@ echo "-----> Creating file .elasticio_sailor"
 ruby -e "require 'yaml';obj = {'config_vars' => {'CLASSPATH' => '$CLASSPATH'}};File.open('.elasticio_sailor', 'w') {|f| f.write(obj.to_yaml) }"
 
 echo "-----> Creating sail.sh and serve.sh files"
-echo "java -cp $CLASSES_MAIN_DIR:$RESOURCES_MAIN_DIR:$DEPENDENCIES_DIR/* io.elastic.sailor.Sailor" > sail.sh
-echo "java -cp $CLASSES_MAIN_DIR:$RESOURCES_MAIN_DIR:$DEPENDENCIES_DIR/* io.elastic.sailor.Service \${1} \${2} \${3}" > serve.sh
+echo "java -Dfile.encoding=UTF-8 -cp $CLASSPATH io.elastic.sailor.Sailor" > sail.sh
+echo "java -Dfile.encoding=UTF-8 -cp $CLASSPATH io.elastic.sailor.Service \${1} \${2} \${3}" > serve.sh
 
 echo "-----> Connector built successfully"
